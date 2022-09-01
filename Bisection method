@@ -1,0 +1,32 @@
+import math
+def bissection_method(f,a,b):
+
+  iteration = 0
+  max_iteration = 100
+
+  aNew = a
+  bNew = b
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  precision = 10**(-10)
+
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+
+    p = (aNew+bNew)/2
+
+    if f(aNew) * f(p) > 0:
+      aNew = p
+    else:
+      bNew = p
+    
+    error_x = abs(aNew - bNew)
+    error_f = abs( f(aNew) - f(bNew) )
+    print(f' p_{iteration+1} = {p} , |f(p)| =  {abs(f(p))}')
+    iteration += 1
+
+  print(f'iterações ={iteration-1}')
+
+  return p
