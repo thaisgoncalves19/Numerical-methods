@@ -1,0 +1,36 @@
+import math
+def secant_method(f,p0,p1):
+
+  iteration = 0
+  max_iteration = 100
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  precision = 10**(-10)
+
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+    if f(p1) - f(p0) == 0:
+      print(f'O método não pode continuar, divisão pro zero.')
+      iteration = 101
+    else:
+      numerador = f(p1) * p0 - p1 * f(p0)
+      denominador = f(p1) - f(p0)
+      p = numerador / denominador
+
+      print(f'p = {p}')
+
+      #Analisar casos de divisão por zero
+    
+      error_x = abs(p - p1)
+      error_f = abs( f(p) - f(p1) )
+
+      p0 = p1
+      p1 = p
+
+      iteration += 1
+
+  print(f'iterações ={iteration}')
+
+  return p
