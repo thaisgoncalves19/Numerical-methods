@@ -1,0 +1,36 @@
+import math
+def false_position_method(f,p0,p1):
+
+  iteration = 0
+  max_iteration = 100
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  precision = 10**(-10)
+  
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+    if f(p1) - f(p0) == 0:
+      print(f'O método não pode continuar, divisão pro zero.')
+      iteration = 101
+    else:
+      numerador = f(p1) * p0 - p1 * f(p0)
+      denominador = f(p1) - f(p0)
+
+      pAux = numerador / denominador
+      
+      if f(p1) * f(pAux) > 0:
+        p1 = pAux
+      if f(p0) * f(pAux) > 0:
+        p0 = pAux
+      print(f'p_{iteration + 2} = {pAux}')
+
+      error_x = abs(p0 - p1)
+      error_f = abs( f(p0) - f(p1) )
+
+      iteration += 1
+
+  print(f'iterações ={iteration + 2}')
+
+  return pAux
