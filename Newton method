@@ -1,3 +1,6 @@
+import math
+import sympy as sp
+
 def newton_method(f,p0):
 
   #f must be a sympy function p_0 must be choosen such that f'(p0) != 0
