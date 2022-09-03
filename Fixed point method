@@ -1,3 +1,4 @@
+import math
 def fixed_point_method(f,p0):
 
   iteration = 0
