@@ -1,0 +1,23 @@
+def fixed_point_method(f,p0):
+
+  iteration = 0
+  max_iteration = 100
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  precision = 10**(-10)
+
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+    p = f(p0)
+    error_x = abs(p - p0)
+    error_f = abs( f(p) - f(p0) )
+    print(f'p_{iteration + 1} = {p}')
+    p0 = p
+
+    iteration += 1
+
+  print(f'iterações ={iteration}')
+
+  return p
