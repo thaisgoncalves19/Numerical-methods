@@ -1,0 +1,30 @@
+def newton_method(f,p0):
+
+  #f must be a sympy function p_0 must be choosen such that f'(p0) != 0
+  
+  iteration = 0
+  max_iteration = 100
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  x = sp.symbols("x")
+
+  p0_aux = float(p0)
+
+  precision = 10**(-10)
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+    d = sp.diff(f(x), x)    
+    
+    aux1 = f(p0_aux)
+    aux2 = d.subs(x,p0_aux)
+    
+
+    p = p0_aux - aux1/aux2
+    error_x = abs(p - p0_aux)
+    error_f = abs( f(p) - f(p0_aux) )
+    print(f'p_{iteration} = {p} |f(p)| = {abs(f(p))}')
+    iteration += 1
+    p0_aux = p
+  return p
