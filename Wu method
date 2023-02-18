@@ -1,0 +1,26 @@
+def wu_method(f,p0,mu):
+
+  iteration = 0
+  max_iteration = 100
+
+  # We combinate two stop criterion
+  error_x = 1
+  error_f = 1
+
+  precision = 10**(-10)
+
+  while ( (error_x > precision) or (error_f > precision) ) and (iteration < max_iteration):
+      numerador = f(p0)**2
+      denominador = mu*f(p0)**2 + f(p0+f(p0)) - f(p0)
+
+      p = p0 - (numerador / denominador)
+
+      #Analisar casos de divisão por zero
+    
+      error_x = abs(p - p0)
+      error_f = abs( f(p) - f(p0) )
+      
+      p0 = p
+
+      iteration += 1
+  return p
